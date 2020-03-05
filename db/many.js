@@ -1,15 +1,15 @@
 const client = require('./db');
 
-const insert = async () => {
+const many = async () => {
     const db = (await client).db('blackdow');
     const collection = db.collection('mongo');
-    collection.insertOne({title: 'node'}, (err, result) => {
+    collection.insertMany([{type: 'JSON'}, {doc: 'docs'}], (err, result) => {
         if(err){
-            throw err
-            return
+            throw err;
+            return;
         }
         return result;
     })
 };
 
-module.exports = insert;
+module.exports = many;
